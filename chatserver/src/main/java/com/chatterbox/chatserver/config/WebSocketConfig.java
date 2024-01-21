@@ -12,7 +12,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     //The registerStompEndpoints() method registers the /ws endpoint. The SockJS client will attempt to connect to /ws, setAllowedOrigins("*") allows the client to connect from any origin(Solving Cross Origin).
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws").setAllowedOrigins("*").withSockJS();
+        registry.addEndpoint("/ws")
+                .setAllowedOriginPatterns("*") //Solving Cross Origin
+                .withSockJS();
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 import com.chatterbox.chatserver.controller.model.Message;
+import java.util.Objects;
 
 @Controller
 public class ChatController {
@@ -24,8 +25,8 @@ public class ChatController {
 
     @MessageMapping("/send-private-message")
     public Message receivePrivateMessage(@Payload Message message) {
-
-        simpMessagingTemplate.convertAndSendToUser(message.getReceiverName(), "/private", message);
+        String receiverName = Objects.requireNonNull(message.getReceiverName(), "Receiver name must not be null");
+        simpMessagingTemplate.convertAndSendToUser(receiverName, "/private", message);
         return message;
     }
 }
