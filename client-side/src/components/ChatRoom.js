@@ -99,7 +99,7 @@ const ChatRoom = () => {
                 status: "MESSAGE"
             };
             if (user.username !== flag) {
-                privateChat.set(flag).push(chatMessage);
+                privateChat.get(flag).push(chatMessage);
                 setPrivateChat(new Map(privateChat));
             }
             stompClient.send("/app/send-private-message", {}, JSON.stringify(chatMessage));
@@ -116,7 +116,7 @@ const ChatRoom = () => {
                             <li onClick={() => { setFlag("COMMON_ROOM") }} className={`member ${flag === "COMMON_ROOM" && "active"}`}>Common Room</li>
                             {[...privateChat.keys()].map((name, index) => (
                                 <li onClick={() => { setFlag(name) }} className={`member ${flag === name && "active"}`} key={index}>{name}</li>
-                            ))} 
+                            ))}
                         </ul>
                     </div>
                     {flag === "COMMON_ROOM" ? (
@@ -173,7 +173,7 @@ const ChatRoom = () => {
                         value={user.username}
                         onChange={handleUserName}
                     />
-                    <button type="button" onClick={handleRegister}>Enter Chat</button>
+                    <button type="button" className='btn-success ms-2' onClick={handleRegister}>Enter Chat</button>
                 </div>
             )}
 
