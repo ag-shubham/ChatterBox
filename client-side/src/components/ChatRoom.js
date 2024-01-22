@@ -25,7 +25,8 @@ const ChatRoom = () => {
     }
 
     const handleRegister = () => {
-        let socket = new SockJS('http://localhost:8080/ws');
+        // let socket = new SockJS('http://localhost:8080/ws');
+        let socket = new SockJS('https://chatterbox-server-pske.onrender.com/ws');
         stompClient = over(socket);
         stompClient.connect({}, onConnected, onError);
     }
