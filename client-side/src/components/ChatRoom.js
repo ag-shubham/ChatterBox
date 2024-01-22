@@ -13,6 +13,7 @@ const ChatRoom = () => {
         receivername: "",
         message: "",
         connected: false,
+        time: ""
     });
 
     const handleUserName = (e) => {
@@ -83,6 +84,14 @@ const ChatRoom = () => {
             let chatMessage = {
                 senderName: user.username,
                 content: user.message,
+                time: new Date().toLocaleString('en-IN', {
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: true,
+                    day: 'numeric',
+                    month: 'numeric',
+                    year: 'numeric',
+                }),
                 status: "MESSAGE"
             };
             stompClient.send("/app/send-message", {}, JSON.stringify(chatMessage));
@@ -96,6 +105,14 @@ const ChatRoom = () => {
                 senderName: user.username,
                 receiverName: flag,
                 content: user.message,
+                time: new Date().toLocaleString('en-IN', {
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: true,
+                    day: 'numeric',
+                    month: 'numeric',
+                    year: 'numeric',
+                }),
                 status: "MESSAGE"
             };
             if (user.username !== flag) {
@@ -123,11 +140,17 @@ const ChatRoom = () => {
                         <div className='chat-content'>
                             <ul className='chat-messages'>
                                 {publicChat.map((chat, index) => (
-                                    <li className='message' key={index}>
-                                        {chat.senderName !== user.username && <div className='avatar'>{chat.senderName}</div>}
-                                        <div className='message-data'>{chat.content}</div>
-                                        {chat.senderName === user.username && <div className='avatar self'>{chat.senderName}</div>}
-                                    </li>
+                                    chat.senderName === user.username ? (
+                                        <li className='self-message' key={index}>
+                                            <div className='message-data'>{chat.content}</div>
+                                            <div className='avatar self'>{chat.senderName}</div>
+                                            <span className='message-time'>{chat.time}</span>
+                                        </li>) : (
+                                        <li className='message' key={index}>
+                                            <div className='avatar'>{chat.senderName}</div>
+                                            <div className='message-data'>{chat.content}</div>
+                                            <span className='message-time'>{chat.time}</span>
+                                        </li>)
                                 ))}
                             </ul>
                             <div className='send-message'>
@@ -144,11 +167,17 @@ const ChatRoom = () => {
                         <div className='chat-content'>
                             <ul className='chat-messages'>
                                 {[...privateChat.get(flag)].map((chat, index) => (
-                                    <li className='message' key={index}>
-                                        {chat.senderName !== user.username && <div className='avatar'>{chat.senderName}</div>}
-                                        <div className='message-data'>{chat.content}</div>
-                                        {chat.senderName === user.username && <div className='avatar self'>{chat.senderName}</div>}
-                                    </li>
+                                    chat.senderName === user.username ? (
+                                        <li className='self-message' key={index}>
+                                            <div className='message-data'>{chat.content}</div>
+                                            <div className='avatar self'>{chat.senderName}</div>
+                                            <span className='message-time'>{chat.time}</span>
+                                        </li>) : (
+                                        <li className='message' key={index}>
+                                            <div className='avatar'>{chat.senderName}</div>
+                                            <div className='message-data'>{chat.content}</div>
+                                            <span className='message-time'>{chat.time}</span>
+                                        </li>)
                                 ))}
                             </ul>
                             <div className='send-message'>

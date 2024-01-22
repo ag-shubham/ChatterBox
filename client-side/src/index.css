@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url(123.png);
 }
 
 code {
@@ -60,6 +61,9 @@ button{
 .chat-messages{
   height: 80%;
   border: 1px solid #000;
+  border-radius: 20px;
+  background-image: url(123.jpg);
+  overflow-y: scroll;
 }
 
 .send-message{
@@ -70,7 +74,7 @@ button{
 
 .input-message{
   width:90%;
-  border-radius: 50px;
+  border-radius: 20px;
 }
 
 ul {
@@ -117,10 +121,28 @@ ul {
   flex-direction: row;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   margin: 5px 10px;
+  background: rgba(156, 197, 223, 0.8);
+  justify-content: start;
+  /* float: left; */
+}
+.self-message{
+  padding:5px;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  margin: 5px 10px;
+  background: rgba(156, 223, 184, 0.8);
+  justify-content: end;
+  /* float: right; */
+}
+.message-time {
+  font-size: 10px;
+  color: #060606;
+  float: right;
+  padding-top: 12px;
+  margin-top: 5px;
 }
 .message-data{
   padding:5px;
-}
-.message.self{
-  justify-content: end;
 }
