@@ -36,9 +36,11 @@ button{
   padding:30px;
   box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.034),0 6.7px 5.3px rgba(0, 0, 0, 0.048),0 12.5px 10px rgba(0, 0, 0, 0.06),0 22.3px 17.9px rgba(0, 0, 0, 0.072),0 41.8px 33.4px rgba(0, 0, 0, 0.086),0 100px 80px rgba(0, 0, 0, 0.12);
   top:35%;
-  left:32%;
+  width: 80%;
+  left: 10%;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 .chat-box{
   box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.034),0 6.7px 5.3px rgba(0, 0, 0, 0.048),0 12.5px 10px rgba(0, 0, 0, 0.06),0 22.3px 17.9px rgba(0, 0, 0, 0.072),0 41.8px 33.4px rgba(0, 0, 0, 0.086),0 100px 80px rgba(0, 0, 0, 0.12);
@@ -51,6 +53,7 @@ button{
 
 .member-list{
   width: 20%;
+  overflow-y: scroll;
 }
 
 .chat-content{
@@ -61,7 +64,7 @@ button{
 .chat-messages{
   height: 80%;
   border: 1px solid #000;
-  border-radius: 20px;
+  border-radius: 10px;
   background-image: url(123.jpg);
   overflow-y: scroll;
 }
@@ -122,8 +125,8 @@ ul {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   margin: 5px 10px;
   background: rgba(156, 197, 223, 0.8);
-  justify-content: start;
-  /* float: left; */
+  float: left;
+  clear: both;
 }
 .self-message{
   padding:5px;
@@ -133,8 +136,8 @@ ul {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   margin: 5px 10px;
   background: rgba(156, 223, 184, 0.8);
-  justify-content: end;
-  /* float: right; */
+  float: right;
+  clear: both;
 }
 .message-time {
   font-size: 10px;
@@ -145,4 +148,40 @@ ul {
 }
 .message-data{
   padding:5px;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .chat-box {
+    position: static;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: 900px;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .chat-content {
+    width: 75%;
+  }
+
+  .member-list {
+    width: 25%;
+    text-align: center;
+  }
+
+  .send-message {
+    width: 100%;
+    flex-direction: row;
+  }
+
+  .input-message {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .send-button {
+    width: 30%;
+  }
 }
