@@ -1,9 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { over } from 'stompjs';
 import SockJS from 'sockjs-client';
 
 var stompClient = null;
 const ChatRoom = () => {
+    
+    async function checkServer(){
+        try{
+            const res = await fetch('https://chatterbox-server-pske.onrender.com');
+            if(res.status === 200){
+                console.log('Server is running');
+            }
+        }
+        catch(err){
+            console.log(err + '\nServer is not running');
+        }   
+    }
+
+    useEffect(() => {
+        checkServer();
+    }, []);
 
     const [publicChat, setPublicChat] = useState([]);
     const [privateChat, setPrivateChat] = useState(new Map());
